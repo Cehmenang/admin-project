@@ -1,0 +1,15 @@
+<script>
+    class Animation{
+        constructor(){
+            this.hero = { targets: '.hero-gambar', translateY: -545 }
+            this.welcome = { targets: '.welcome', translateY: -545 }
+            this.sub = { targets: '.sub-text', translateY: -545 }
+            this.animation = anime.timeline({ easing: 'easeInOutSine', duration: 1110 })
+            this.#addElement()
+        }
+        #addElement(){ return this.animation.add(this.hero).add(this.welcome).add(this.sub) }
+    }
+    
+    const animation = new Animation().animation
+    addEventListener('load', ()=>animation.play)
+</script>

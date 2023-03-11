@@ -1,0 +1,77 @@
+<div class="w-full h-screen flex justify-center items-center bg-gradient-to-r from-emerald-400 to-teal-800">
+    <div class="card bg-white w-4/5 drop-shadow-lg rounded-[36px] h-[80%] flex justify-between overflow-hidden">
+        <div class="login-form w-[65%] text-teal-900 flex flex-col justify-center items-center">
+
+            <h1 class="text-[36px] font-bold tracking-tight text-center mb-[3px]">Register.</h1>
+
+            <div class="garis h-2 bg-teal-700 w-40 mb-3 rounded-xl transition-all hover:w-60"></div>
+
+            <form action="/register" class="w-full px-12" method="POST">
+
+                <div class="mb-5">
+                    <p class="font-semibold tracking-[-0.5px] text-[14px] mb-1">Fullname</p>
+                    <input type="text" name="fullname" class="border-2 border-teal-700 py-[5px] px-4 rounded-3xl w-full font-semibold focus:outline-none focus:border-teal-500 focus:ring-teal-500 placeholder:text-gray-300 text-[15px]" placeholder="your fullname">
+                    <p class="error text-red-500 text-[12px] mt-[5px]"> <%= error.fullname.msg[0] %> </p>
+                </div>
+
+                <div class="email flex justify-between mb-5 gap-x-6">
+                    <div class="w-1/2">
+                        <p class="font-semibold tracking-[-0.5px] text-[14px] mb-1">Email Address</p>
+                        <input type="email" name="email" class="border-2 border-teal-700 py-[5px] px-4 rounded-3xl w-full font-semibold focus:outline-none focus:border-teal-500 focus:ring-teal-500 placeholder:text-gray-300 text-[15px]" placeholder="your.email@gmail.com">
+                        <% if (error.email.msg.length > 0) { %>
+                            <p class="error text-red-500 text-[12px] mt-[5px]"> <%= error.email.msg[0] %> </p>
+                        <% } else { %>
+                            <p class="error text-gray-400 text-[11px] mt-[5px]">Usahakan menggunakan email perusahaan</p>
+                        <% } %> 
+                    </div>
+    
+                    <div class="w-1/2">
+                        <p class="font-semibold tracking-[-0.5px] text-[14px] mb-1">Company</p>
+                        <input type="text" name="company" class="border-2 border-teal-700 py-[5px] px-4 rounded-3xl w-full font-semibold focus:outline-none focus:border-teal-500 focus:ring-teal-500 placeholder:text-gray-300 text-[15px]" placeholder="your company">
+                        <p class="error text-red-500 text-[12px] mt-[5px]"> <%= error.company.msg[0] %></p>
+                    </div>
+                </div>
+
+                <div class="password flex justify-between mb-2 gap-x-6">
+                    <div class="w-1/2">
+                        <p class="font-semibold tracking-[-0.5px] text-[14px] mb-1">Password</p>
+                        <input type="password" name="password" class="border-2 border-teal-700 py-[5px] px-4 rounded-3xl w-full font-semibold focus:outline-none focus:border-teal-500 focus:ring-teal-500 placeholder:text-gray-300 text-[15px]" placeholder="******">
+                        <% if (error.password.msg.length > 0) { %>
+                            <p class="error text-red-500 text-[12px] mt-[5px]"> <%= error.password.msg[0] %> </p>
+                        <% } else { %>
+                            <p class="error text-gray-400 text-[11px] mt-[5px]">Password harus memuat minimal 6 Karakter</p>
+                        <% } %> 
+                    </div>
+    
+                    <div class="w-1/2">
+                        <p class="font-semibold tracking-[-0.5px] text-[14px] mb-1">Phone Number</p>
+                        <input type="text" name="phone" class="border-2 border-teal-700 py-[5px] px-4 rounded-3xl w-full font-semibold focus:outline-none focus:border-teal-500 focus:ring-teal-500 placeholder:text-gray-300 text-[15px]" placeholder="0812000000">
+                        <p class="error text-red-500 text-[12px] mt-[5px]"> <%= error.phone.msg[0] %></p>
+                    </div>
+                </div>
+
+                <div class="agree mb-3">
+                    <input type="checkbox" class="rounded-[50%] border-2 border-teal-700 w-[14px] h-[14px] 
+                    focus:outline-none focus:ring-transparent transition-all" required>
+                    <label for="remember" class="text-teal-800 text-[12px] tracking-[-0.3px] font-semibold ml-[1px]">I agree to the <span class="font-extrabold">Terms of User</span></label>
+                </div>
+
+                <div class="w-full text-center">
+                    <button type="submit" class="bg-teal-600 w-full text-white py-[7px] rounded-lg transition-all hover:bg-teal-700 text-[17px]">Register</button>
+                </div>
+
+            </form>
+
+            <p class="mt-3 text-[13px] font-semibold tracking-[-0.3px] text-center">Already Have Account. <a href="/login" class="underline underline-offset-[5px] decoration-teal-800 font-bold">Go To Login?</a></p>
+
+        </div>
+        <div class="hero bg-gradient-to-br w-[35%] from-emerald-400 to-teal-700 h-full flex justify-center items-center flex-col text-white">
+            <img src="/img/hero2.png" alt="gambar" class="h-[400px] hero-gambar mt-[1100px]">
+            <p class="font-semibold text-[38px] relative top-[-40px] tracking-[-0.8px] welcome">Hello Buddy!</p>
+            <p class="relative top-[-45px] text-gray-300 font-light text-[14px] sub-text">Create account to go to the next step.</p>
+        </div>
+    </div>
+</div>
+
+<%- include('script/anime') %> 
+<%- include('script/animation') %> 

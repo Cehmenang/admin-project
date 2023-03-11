@@ -1,0 +1,29 @@
+<div class="flex bg-gray-100 min-h-screen items-center justify-center bg-gradient-to-r from-emerald-500 to-teal-800">
+   
+        <div class="container max-w-screen-lg mx-auto">
+
+          <div>
+            <h2 class="font-semibold text-[44px] text-white mb-[-5px]">Cancel Document</h2>
+            <p class="text-gray-200 mb-4 text-[22px]">Berikan alasan penolakan</p>
+      
+            <div class="bg-white rounded-[20px] shadow-lg p-4 px-4 md:p-8 mb-6">
+        
+                    <form class="bg-white" action="/cancelDocument" method="POST">
+                        <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-1 border-gray-200">
+                           <textarea class="pl-2 outline-none border-none w-full outline-white resize-none text-[18px]" type="text" name="message" placeholder="Tulis pesan . . ." rows="5" maxlength="255" required></textarea>
+                           <input class="hidden" type="text" name="id" value="<%= id %>"/>
+                        </div>
+
+                        <span class="text-gray-400 text-[13px] mb-3">Pesan maksimal memuat 255 karakter</span>
+
+                        <button type="submit" class="block w-full bg-red-600 mt-[30px] py-3 rounded-2xl text-white mb-2 text-[18px] hover:bg-red-700">Cancel</button>
+                        
+                    </form>
+
+            </div>
+
+          </div>
+      
+        </div>
+
+</div>

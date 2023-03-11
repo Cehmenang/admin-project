@@ -1,0 +1,52 @@
+<div class="w-full h-screen flex justify-center items-center bg-gradient-to-r from-emerald-400 to-teal-800">
+    <div class="card bg-white w-4/5 drop-shadow-lg rounded-[36px] h-[80%] flex justify-between overflow-hidden">
+        <div class="login-form w-1/2 text-teal-900 flex flex-col justify-center items-center">
+
+            <h1 class="text-[36px] font-bold tracking-tight text-center mb-[3px]">Log in.</h1>
+
+            <div class="garis h-2 bg-teal-700 w-28 mb-7 rounded-xl transition-all hover:w-48"></div>
+
+            <form action="/login" class="w-full px-12" method="POST">
+
+                <div class="mb-6">
+                    <p class="font-semibold tracking-[-0.5px] text-[14px] mb-1">Enter your email address</p>
+                    <input type="email" name="email" required class="border-2 border-teal-700 py-2 px-5 rounded-3xl w-full font-semibold focus:outline-none focus:border-teal-500 focus:ring-teal-500 placeholder:text-gray-300" placeholder="your.email@gmail.com">
+                    <% if ( error && error.param == "email" ) { %>
+                        <p class="error text-red-500 text-[12px] mt-[5px]"><%= error.msg %> </p>
+                    <% } %>
+                </div>
+
+                <div class="mb-4">
+                    <p class="font-semibold tracking-[-0.5px] text-[14px] mb-1">Enter your password</p>
+                    <input type="password" name="password" required class="border-2 border-teal-700 py-2 px-5 rounded-3xl w-full font-semibold focus:outline-none focus:border-teal-500 focus:ring-teal-500 placeholder:text-gray-300" placeholder="******">
+                    <% if ( error && error.param == "password" ) { %>
+                        <p class="error text-red-500 text-[12px] mt-[5px]"><%= error.msg %> </p>
+                    <% } else { %>
+                    <p class="error text-gray-400 text-[12px] mt-[5px]">Minimal password memuat 6 karakter</p>
+                    <% } %> 
+                </div>
+
+                <div class="remember mb-4">
+                    <input type="checkbox" name="remember" class="rounded-[50%] border-2 border-teal-700 w-5 h-5 focus:outline-none focus:ring-transparent transition-all">
+                    <label for="remember" class="text-teal-800 text-[14px] tracking-[-0.3px] font-semibold ml-[3px]">Remember Me</label>
+                </div>
+
+                <div class="w-full text-center">
+                    <button type="submit" class="bg-teal-600 w-full text-white py-[7px] rounded-lg transition-all hover:bg-teal-700 text-[18px]">Login</button>
+                </div>
+
+            </form>
+
+            <p class="mt-5 text-[13px] font-semibold tracking-[-0.3px] text-center">Don't have account. <a href="/register" class="underline underline-offset-[5px] decoration-teal-800 font-bold">Create account?</a></p>
+
+        </div>
+        <div class="hero bg-gradient-to-br w-1/2 from-emerald-400 to-teal-700 h-full flex justify-center items-center flex-col text-white">
+            <img src="/img/hero.png" alt="gambar" class="h-[460px] hero-gambar mt-[1100px]">
+            <p class="font-semibold text-[38px] relative top-[-40px] tracking-[-0.8px] welcome">Welcome Back!</p>
+            <p class="relative top-[-45px] text-gray-300 font-light text-[16px] sub-text">You should login to go to the next page.</p>
+        </div>
+    </div>
+</div>
+
+<%- include('script/anime') %> 
+<%- include('script/animation') %> 

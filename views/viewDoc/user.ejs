@@ -1,0 +1,7 @@
+<div class="flex bg-gray-100 min-h-screen">
+    <%- include('../sidebar/user') %> 
+    <div class="outer-container w-full mx-8 my-5 rounded-2xl overflow-hidden drop-shadow-xl flex flex-col">
+        <iframe src="document/<%= dokumen.fileName %>" frameborder="0" class="h-full w-full"></iframe>
+        <a href="/dashboard" class="block bg-gray-800 py-3 text-center text-white text-md hover:bg-gray-900 border-t-2 border-t-white">Kembali</a>
+    </div>
+</div>

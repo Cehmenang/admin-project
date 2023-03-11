@@ -1,0 +1,162 @@
+<%- include('../sidebar/admin') %> 
+
+<style>
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+</style>
+
+<div class="flex bg-gray-100 h-full text-gray-800 justify-end">
+          
+        <main class="px-12 py-6 space-y-4 w-[85.8%] h-full">
+  
+            <div class="flex justify-between items-center gap-x-4 mb-8">
+
+                <div class="w-full">
+                    <form action="/history" method="GET">
+                    <div class="input-group flex w-full">
+                    <input type="search" class="form-control relative flex-auto min-w-0 block w-full px-4 py-2 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none text-[18px]" placeholder="Search" aria-label="Search" aria-describedby="button-addon2" name="search">
+                    <button class="btn px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-700 active:shadow-lg transition duration-150 ease-in-out flex items-center" type="submit" id="button-addon2">
+                      <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="w-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
+                      </svg>
+                    </button>
+                    </div>   
+                    </form>    
+                </div>
+
+                <div class="dropdown inline-block relative">
+                      <button class="bg-blue-500 text-white font-normal py-2.5 px-4 rounded inline-flex items-center hover:bg-blue-600">
+                        <span class="mr-1">Masuk</span>
+                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                      </button>
+                      <div class="dropdown-menu absolute text-gray-700 pt-1 hidden">
+
+                        <ul class="flex">
+
+                            <li>
+                                <a class=" bg-gray-100 hover:bg-gray-200 py-2 px-4 block whitespace-no-wrap text-[12px]" href="/documentList?type=masuk">Terbaru</a>
+                                <a class=" bg-gray-100 hover:bg-gray-200 py-2 px-4 block whitespace-no-wrap text-[12px]" href="/documentList?type=masuk&sort=terlama">Terlama</a>
+                            </li>
+
+                        </ul>
+
+
+                      </div>
+                </div>
+                  
+                <div class="dropdown inline-block relative">
+                      <button class="bg-blue-500 text-white font-normal py-2.5 px-4 rounded inline-flex items-center hover:bg-blue-600">
+                        <span class="mr-1">Keluar</span>
+                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                      </button>
+                      <div class="dropdown-menu absolute text-gray-700 pt-1 hidden">
+
+                        <ul class="flex">
+
+                            <li>
+                                <a class=" bg-gray-100 hover:bg-gray-200 py-2 px-4 block whitespace-no-wrap text-[12px]" href="/history?type=keluar">Terbaru</a>
+                                <a class=" bg-gray-100 hover:bg-gray-200 py-2 px-4 block whitespace-no-wrap text-[12px]" href="/history?type=keluar&sort=terlama">Terlama</a>
+                            </li>
+
+                        </ul>
+
+
+                      </div>
+                </div>
+
+                <div class="dropdown inline-block relative">
+                      <button class="bg-blue-500 text-white font-normal py-2.5 px-4 rounded inline-flex items-center hover:bg-blue-600">
+                        <span class="mr-1">Filter</span>
+                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                      </button>
+                      <div class="dropdown-menu absolute text-gray-700 pt-1 hidden">
+
+                        <ul class="flex">
+
+                            <li>
+                                <a class=" bg-gray-100 hover:bg-gray-200 py-2 px-4 block whitespace-no-wrap text-[12px]" href="/documentList">Terbaru</a>
+                                <a class=" bg-gray-100 hover:bg-gray-200 py-2 px-4 block whitespace-no-wrap text-[12px]" href="/documentList?sort=terlama">Terlama</a>
+                            </li>
+
+                        </ul>
+
+
+                      </div>
+                </div>
+              
+            </div>
+          
+            <section>
+              <% if (dokumen.length > 0) { %>
+  
+                <div class="list h-full w-full flex flex-col gap-y-3 my-5">
+                  <% dokumen.forEach(dok => { %>
+                    <% function setTanggal(tanggalan){
+                        const tanggal = tanggalan.getDate()
+                        const bulan = tanggalan.getMonth() + 1
+                        const tahun = tanggalan.getFullYear()
+                        return `${tanggal}/${bulan}/${tahun}`
+                    } %>
+                    <div class="komponen w-full bg-gray-700 rounded-2xl px-8 py-5 text-white">
+                        
+                      <div class="header flex justify-between">
+                        <p class="text-gray-400 text-[12px]"><%= setTanggal(dok.createdAt) %></p>
+                        <p class="text-gray-400 text-sm hover:text-gray-200 transition"><%= dok.status %></p>
+                      </div>
+                      <div class="company-content mt-1 w-full flex items-center gap-x-[6px]">
+                        <div class="bg-gray-600 text-gray-200 px-4 py-[3px] text-[12px] rounded-xl font-semibold flex items-center gap-x-1">
+                          <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-4 w-4">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                          </svg>
+                          <span><%= dok.type %></span>
+                        </div>
+                        <p class="bg-gray-600 text-gray-200 px-4 py-[3px] text-[12px] rounded-xl font-semibold inline-block"><%= dok.senderId.company %></p>
+                        <div class="bg-gray-600 text-gray-200 px-3 py-[3px] text-[12px] rounded-xl font-semibold inline-block">
+                          <div class="flex items-center">
+                            <span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16"><path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg></span><span class="ml-[3px]"><%= dok.senderId.fullname %></span>
+                          </div>
+                        </div>
+                        <span>></span>
+                        <div class="bg-gray-600 text-gray-200 px-3 py-[3px] text-[12px] rounded-xl font-semibold inline-block">
+                          <div class="flex items-center">
+                            <span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16"><path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg></span><span class="ml-[3px]"><%= dok.receiverId.fullname %></span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="content flex justify-between items-center gap-x-24">
+                        <div class="text-content">
+
+                          <p class="text-2xl mt-1 font-semibold"><%= dok.title %></p>
+                          <p class="text-gray-400 mt-1 text-[15px]"><%= dok.description %></p>
+
+                          <% if (dok.status === "ditolak") { %>
+                            <a href="viewPenolakan?id=<%= dok._id %>" class="modal-button inline-block text-white bg-teal-600 font-medium rounded-lg text-[13px] py-[5px] px-5 text-center mt-2" type="button">
+                              Lihat pesan
+                            </a>                        
+                          <% } %>
+
+                        </div>
+                          <a href="/viewDocument?id=<%= dok._id %>" class="hover:text-gray-400 mr-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="currentColor" class="bi bi-paperclip" viewBox="0 0 16 16"> <path d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0V3z"/> </svg>
+                          </a>
+                      </div>
+                    </div>            
+                  <% }) %>
+                </div>  
+  
+              <% } else { %> 
+  
+                <div class="kosong flex justify-center flex-col items-center h-[540px]">
+                    <p class="text-[46px] font-semibold tracking-tight">Dokumen kosong</p>
+                    <p class="text-gray-500 text-[20px]" >Belum ada dokumen masuk . . .</p>
+                </div>
+  
+              <% } %>
+           
+            </div>
+          </section>
+          
+        </main>
+
+</div>

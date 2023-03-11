@@ -1,0 +1,39 @@
+<%- include('../sidebar/admin') %> 
+
+<div class="p-10 h-screen bg-gray-300 flex justify-end">
+    <div class="bg-gray-100 shadow-lg rounded-lg overflow-hidden w-[74.8%] mr-16">
+        <div>
+            <div class="w-full p-4">
+
+                <div>
+                    <input type="text" class="w-full h-12 rounded focus:outline-none px-3 focus:shadow-md" placeholder="Search..."> <i class="fa fa-search text-gray-300"></i>
+                </div>
+
+                
+                <div class="h-[465px] w-full overflow-y-scroll">              
+                    <% if (pengurus && pengurus.length > 0) { %>
+                        <% pengurus.forEach(urus => { %>                        
+                            <a href="/sendTo?pengurus=<%= urus._id %>&dokumen=<%= id %>" class="flex justify-between items-center bg-white mt-2 p-6 hover:shadow-lg rounded-md cursor-pointer transition border-white hover:border-gray-200 border-2">
+                                <div class="flex ml-2">
+                                    <div class="flex flex-col">
+                                        <span class="text-[22px] font-semibold text-gray-800 tracking-tight"><%= urus.fullname %></span> 
+                                        <% if (urus.numOfDoc && urus.numOfDoc > 0) { %>
+                                            <span class="text-[14px] text-gray-400">Sedang mengurus <%= urus.numOfDoc %> Dokumen</span>                                                        
+                                        <% } %>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-center"> <span class="text-gray-500 text-sm bg-gray-200 px-4 py-1 rounded-xl font-semibold">Pengurus</span> <i class="fa fa-star text-green-400"></i></div>
+                            </a>
+                        <% }) %>
+                        <% } else { %>
+                            <div class="kosong w-full h-full flex flex-col justify-center items-center">
+                                <p class="text-3xl font-semibold tracking-tight text-gray-800">Belum ada pengurus yang tersedia</p>
+                                <p class="text-[16px] mt-1 text-gray-600">Silahkan menambah pengurus terlebih dahulu</p>
+                            </div>
+                        <% } %>
+                </div>
+                <a href="/createPengurus" class="w-full py-2 bg-teal-700 block text-center text-white text-[16px] hover:bg-teal-800">Tambah Pengurus</a>
+            </div>
+        </div>
+    </div>
+</div>
