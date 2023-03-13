@@ -14,16 +14,22 @@ const adminDashboardHandler = async( account, res)=>{
         let inboxSurat = await Dokumen.find({ status: 'menunggu', type: 'masuk' })
         inboxSurat = inboxSurat.length
 
-        let suratMasuk = await Dokumen.find({ status: 'terkirim', type: 'masuk' })
+        let suratMasuk = await Dokumen.find({ status: { $ne: 'menunggu' }, type: 'masuk' })
         suratMasuk = suratMasuk.length
 
-        let suratKeluar = await Dokumen.find({ status: 'terkirim', type: 'keluar' })
+        let suratKeluar = await Dokumen.find({ type: 'keluar' })
         suratKeluar = suratKeluar.length
 
         let totalSurat = await Dokumen.find({ status: { $ne: 'menunggu' } })
         totalSurat = totalSurat.length
+
+        let totalUser = await Akun.find({ role: 'user' })
+        totalUser = totalUser.length
+
+        let totalPengurus = await Akun.find({ role: 'pengurus' })
+        totalPengurus = totalPengurus.length
         
-        return res.status(200).render('dashboard/admin', { layout: 'layout/main', title: 'Dashboard Admin', style: 'dashboard/admin', account, inboxSurat, suratMasuk, suratKeluar, totalSurat })
+        return res.status(200).render('dashboard/admin', { layout: 'layout/main', title: 'Dashboard Admin', style: 'dashboard/admin', account, inboxSurat, suratMasuk, suratKeluar, totalSurat, totalUser, totalPengurus })
     } catch(e){ return res.status(400).json({ err: e.message }) }
 }
 
@@ -228,6 +234,13 @@ class Pagination {
         if(req.account.role === "admin") return adminHistoryHandler(req, res)
         if(req.account.role === "pengurus") return pengurusHistoryHandler(res)
         return userHistoryHandler(res)
+    }
+
+    async settingPage(req,res){
+        try{
+            const error = { param: req.flash('param'), msg: req.flash('msg') } || null
+            return res.status(200).render('setting', { layout: 'layout/main', title: 'Setting Page', style: 'setting', account: req.account, error })
+        } catch(e){ return res.status(400).json({ err: e.message }) }
     }
 
     handlePage(req, res){

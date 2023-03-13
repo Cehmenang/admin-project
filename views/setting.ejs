@@ -1,0 +1,48 @@
+<% if (account.role == "admin") { %>
+       <%- include('./sidebar/admin') %>
+<% } %>
+<% if (account.role == "pengurus") { %>
+       <%- include('./sidebar/pengurus') %>
+<% } %>
+<% if (account.role == "user") { %>
+       <%- include('./sidebar/user') %>
+<% } %>
+
+<div class="outer-content bg-gradient-to-r from-emerald-500 to-teal-900 w-full h-screen flex justify-end align-items overflow-hidden">
+       <div class="flex w-[85.8%]">
+              <div class="outer-container w-full m-24 rounded-2xl overflow-hidden drop-shadow-xl flex flex-col">
+                  <div class="h-full w-full bg-white p-12">
+                     <h1 class="font-bold text-[44px] tracking-[-1.5px] text-teal-900 border-b-4 pb-1 border-teal-800">Pengaturan</h1>
+
+                     <form action="/setting" method="POST" class="mt-6 text-teal-900">
+
+                            <div class="mb-6">
+                                   <p class="font-semibold tracking-[-0.5px] text-[16px] ml-5 mb-[2px]">Fullname</p>
+                                   <input type="text" name="fullname" required class="border-[3px] border-teal-700 py-[6px] px-5 rounded-2xl w-full font-semibold focus:outline-none focus:border-teal-500 focus:ring-teal-500 placeholder:text-gray-300 text-[17px]" placeholder="Your Name" value="<%= account.fullname %>">
+                            </div>
+
+                            <div class="outer-split flex w-full mb-10 gap-x-4">
+                                   <div class="w-full">
+                                          <p class="font-semibold tracking-[-0.5px] text-[16px] ml-5 mb-[2px]">Password</p>
+                                          <input type="password" name="password" required class="border-[3px] border-teal-700 py-[6px] px-5 rounded-2xl w-full font-semibold focus:outline-none focus:border-teal-500 focus:ring-teal-500 placeholder:text-gray-300 text-[17px]" placeholder="Your Password" value="******">
+                                          <% if ( error && error.param[0] == "password" ) { %>
+                                                 <p class="error text-red-500 text-[12px] mt-[5px]"><%= error.msg[0] %> </p>
+                                          <% } %>
+                                   </div>
+                                   <div class="w-full">
+                                          <p class="font-semibold tracking-[-0.5px] text-[16px] ml-5 mb-[2px]">Phone Number</p>
+                                          <input type="text" name="phone" required class="border-[3px] border-teal-700 py-[6px] px-5 rounded-2xl w-full font-semibold focus:outline-none focus:border-teal-500 focus:ring-teal-500 placeholder:text-gray-300 text-[17px]" placeholder="Your Phone Number" value="<%= account.phone %>">
+                                   </div>                                   
+                            </div>
+
+                            <div class="form-bottom w-full flex gap-x-4">
+                                   <button type="submit" name="save" class="bg-teal-700 hover:bg-teal-800 text-white px-6 py-[6px] rounded-xl w-full">Save</button>
+                                   <a href="/logout" class="bg-red-500 hover:bg-red-600 text-white px-6 py-[6px] rounded-xl w-full text-center">Logout</a>
+                            </div>
+
+                     </form>
+
+                  </div>
+              </div>
+          </div>
+</div>                      

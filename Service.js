@@ -44,8 +44,8 @@ class SubService {
         return res.status(400).redirect('/register')
     }
     
-    generateSession(req, { _id, fullname, email, role }, remember){
-        const account = { id : _id, fullname, email, role }
+    generateSession(req, { _id, fullname, email, phone, role }, remember){
+        const account = { id : _id, fullname, email, phone, role }
         req.session.account = account
         return req.session.account
     }
@@ -144,6 +144,33 @@ class Service{
             return res.status(200).redirect('/documentList')
         }catch(e){ return res.status(400).json({ err: e.message }) }
     }
+
+    async settingHandler(req, res){
+        try{
+            console.log(req.body.logout)
+            if(req.body.logout) console.log(req.body.logout)
+            const account = await Akun.findOne({ _id: req.account.id })
+            let hashPassword = null
+            if(req.body.password && req.body.password.length < 6){
+                req.flash('param', 'password')
+                req.flash('msg', 'Minimum password include 6 chars!')
+                return res.status(400).redirect('/setting')
+            }
+            if(req.body.password !== "******" && req.body.password){
+                const genSalt = await bcrypt.genSalt(10)
+                hashPassword = await bcrypt.hash(req.body.password, genSalt)
+            }
+            await Akun.updateOne({ _id: req.account.id }, { 
+                fullname: !req.body.fullname ? account.fullname : req.body.fullname, 
+                password: req.body.password == "******" || !req.body.password ? account.password : hashPassword ,
+                phone: !req.body.phone ? account.phone : req.body.phone
+            })
+            req.session.account.fullname = !req.body.fullname ? account.fullname : req.body.fullname
+            req.session.account.phone =  !req.body.phone ? account.phone : req.body.phone
+            return res.status(200).redirect('/setting')
+        }catch(e){ return res.status(400).json({ err: e.message }) }
+    }
+
 
 }
 

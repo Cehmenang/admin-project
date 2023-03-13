@@ -13,12 +13,13 @@ dotenv.config()
 class App {
     constructor(){
         this.app = express()
+        this.secret = `bdaf57aa056ce0dbab3b9ad1c0389ad772d20267aa45e49ca0d5d35e79848a8f7b57c8f22763a9d939ffe5685c8548ad76996be45eb10da0b8f7694d6df786b0`
         this.middleware()
         this.connection()
     }
     middleware(){
         this.app.set('view engine', 'ejs')
-        this.app.use(session({ secret: process.env.SECRET, saveUninitialized: false, resave: false, cookie: {
+        this.app.use(session({ secret: process.env.SECRET || this.secret, saveUninitialized: false, resave: false, cookie: {
             maxAge: 1000 * 60 * 120,
             secure: false,
             httpOnly: true

@@ -25,6 +25,8 @@ class Routes {
         this.router.get('/cancelDocument', Middleware.isLogin, Pagination.cancelDocPage)
         this.router.get('/userList', Middleware.isLogin, Middleware.isAdmin, Pagination.userListPage)
         this.router.get('/history', Middleware.isLogin, Pagination.historyPage)
+        this.router.get('/setting', Middleware.isLogin, Pagination.settingPage)
+        this.router.get('/logout', Service.logoutHandler)
         this.router.get('*', Middleware.stillLogin, Pagination.handlePage)
     }
     serviceRoutes(){
@@ -34,6 +36,7 @@ class Routes {
         this.router.post('/createDocument', Middleware.isLogin, Middleware.fileValidator, Service.createDocumentHandler)
         this.router.post('/cancelDocument', Middleware.isLogin, Service.cancelDocumentHandler)
         this.router.post('/createPengurus', Middleware.isLogin, Middleware.isAdmin, Service.createPengurusHandler)
+        this.router.post('/setting', Middleware.isLogin, Service.settingHandler)
     }
 
 }
